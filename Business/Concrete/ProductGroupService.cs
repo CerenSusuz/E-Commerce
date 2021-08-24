@@ -13,8 +13,13 @@ namespace Business.Concrete
 {
     public class ProductGroupService  :ServiceRepository<ProductGroup,ProductGroupDto>, IProductGroupService
     {
-        public ProductGroupService(IRepository<ProductGroup> repository, IMapper mapper) : base(repository, mapper)
+        private readonly IRepository<ProductGroup> _repository;
+        private readonly IMapper _mapper;
+
+        public ProductGroupService(IRepository<ProductGroup> repository,IMapper mapper) : base(repository,mapper)
         {
+            _repository = repository;
+            _mapper = mapper;
         }
 
         [CacheAspect()]

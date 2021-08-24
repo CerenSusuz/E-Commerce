@@ -3,7 +3,7 @@ using Core.Plugins.Authentication.Models;
 
 namespace Business.Abstract
 {
-    public interface IAuthenticationService
+    public interface IAuthenticationService 
     {
         /// <summary>
         /// Login Operation

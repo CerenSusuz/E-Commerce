@@ -1,6 +1,8 @@
-﻿namespace Business.Models.BaseListDto
+﻿using Core.Signatures;
+
+namespace Business.Models.BaseListDto
 {
-    public class BrandsDto
+    public class BrandsDto : IBaseListDto
     {
         public int Id { get; set; }
         public string Description { get; set; }

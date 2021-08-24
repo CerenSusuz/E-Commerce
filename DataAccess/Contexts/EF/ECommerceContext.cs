@@ -40,7 +40,7 @@ namespace DataAccess.Contexts.EF
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=localhost,1433;Database=ECommerce;User=sa;Password=Yaren#1998;");
+                optionsBuilder.UseSqlServer("Server=localhost,1433;Database=E-Commerce;User=sa;Password=Yaren#1998;");
             }
         }
 

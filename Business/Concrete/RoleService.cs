@@ -13,10 +13,13 @@ namespace Business.Concrete
 {
     public class RoleService :ServiceRepository<Role,RoleDto>, IRoleService
     {
+        private readonly IRepository<Role> _repository;
+        private readonly IMapper _mapper;
         public RoleService(IRepository<Role> repository, IMapper mapper) : base(repository, mapper)
         {
+            _repository = repository;
+            _mapper = mapper;
         }
-
         
         [CacheAspect()]
         public Task<PagedList<RolesDto>> GetAllAsync(int accountId)

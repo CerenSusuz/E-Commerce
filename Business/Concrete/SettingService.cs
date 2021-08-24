@@ -12,8 +12,12 @@ namespace Business.Concrete
 {
     public class SettingService :ServiceRepository<Setting,SettingDto>, ISettingService
     {
+        private readonly IRepository<Setting> _repository;
+        private readonly IMapper _mapper;
         public SettingService(IRepository<Setting> repository, IMapper mapper) : base(repository, mapper)
         {
+            _repository = repository;
+            _mapper = mapper;
         }
 
         public Task<PagedList<SettingsDto>> GetAllAsync()

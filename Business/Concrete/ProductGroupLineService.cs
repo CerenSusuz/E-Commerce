@@ -13,8 +13,13 @@ namespace Business.Concrete
 {
     public class ProductGroupLineService  :ServiceRepository<ProductGroupLine,ProductGroupLineDto>, IProductGroupLineService
     {
-        public ProductGroupLineService(IRepository<ProductGroupLine> repository, IMapper mapper) : base(repository, mapper)
+        private readonly IRepository<ProductGroupLine> _repository;
+        private readonly IMapper _mapper;
+
+        public ProductGroupLineService(IRepository<ProductGroupLine> repository,IMapper mapper) : base(repository,mapper)
         {
+            _repository = repository;
+            _mapper = mapper;
         }
         [CacheAspect()]
         public Task<PagedList<ProductGroupLinesDto>> GetAllAsync(Filter filter)

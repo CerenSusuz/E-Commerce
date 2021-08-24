@@ -13,7 +13,7 @@ namespace API.Installers.Services
             services.AddDbContext<ECommerceContext>(
                 o =>
                 {
-                    o.UseSqlServer("Server=localhost,1433;Database=ECommerce;User=sa;Password=Yaren#1998;");
+                    o.UseSqlServer("Server=localhost,1433;Database=E-Commerce;User=sa;Password=Yaren#1998;");
                 }, ServiceLifetime.Singleton
         );
     }

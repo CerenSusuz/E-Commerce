@@ -10,12 +10,6 @@ namespace Business.Installers.Profiles
     {
         public AutoMapperProfile()
         {
-            CreateMap<Gender, GendersDto>();
-            CreateMap<Gender, GenderDto>().ReverseMap();
-
-            CreateMap<UserGroup, UserGroupsDto>();
-            CreateMap<UserGroup, UserGroupDto>().ReverseMap();
-            
             CreateMap<Account, AccountsDto>()
                 .ForMember(d => d.UserGroup, i => 
                     i.MapFrom(x => x.UserGroup.Description))
@@ -25,6 +19,20 @@ namespace Business.Installers.Profiles
                     i.MapFrom(x => x.Gender.Description ?? ""));
                 
             CreateMap<Account, AccountDto>().ReverseMap();
+            
+            CreateMap<AccountAddress, AccountAddressDto>().ReverseMap();
+            
+            CreateMap<Gender, GendersDto>();
+            CreateMap<Gender, GenderDto>().ReverseMap();
+            
+            CreateMap<Brand, BrandsDto>();
+            CreateMap<Brand, BrandDto>().ReverseMap();
+
+            CreateMap<UserGroup, UserGroupsDto>();
+            CreateMap<UserGroup, UserGroupDto>().ReverseMap();
+            
+
+            
 
         }
     }

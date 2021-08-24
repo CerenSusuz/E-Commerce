@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Concrete;
 using Business.Repositories;
+using DataAccess.Entities;
 using DataAccess.Repositories;
 using DataAccess.Repositories.EF;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,6 +20,7 @@ namespace API.Installers.Services
             services.AddSingleton<IUserGroupService, UserGroupService>();
             services.AddSingleton<IAccountService, AccountService>();
             services.AddSingleton<IAuthenticationService, AuthenticationService>();
+            services.AddSingleton<IBrandService,BrandService>();
             
 
         }

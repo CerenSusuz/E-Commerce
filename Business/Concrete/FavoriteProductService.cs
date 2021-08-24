@@ -13,8 +13,13 @@ namespace Business.Concrete
 {
     public class FavoriteProductService :ServiceRepository<FavoriteProduct,FavoriteProductDto>, IFavoriteProductService
     {
-        public FavoriteProductService(IRepository<FavoriteProduct> repository, IMapper mapper) : base(repository, mapper)
+        private readonly IRepository< FavoriteProduct> _repository;
+        private readonly IMapper _mapper;
+
+        public FavoriteProductService(IRepository< FavoriteProduct> repository,IMapper mapper) : base(repository,mapper)
         {
+            _repository = repository;
+            _mapper = mapper;
         }
         [CacheAspect()]
         public Task<PagedList<FavoriteProductsDto>> GetAllAsync(int accountId)
