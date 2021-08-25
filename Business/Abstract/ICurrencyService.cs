@@ -8,6 +8,6 @@ namespace Business.Abstract
 {
     public interface ICurrencyService : IServiceRepository<CurrencyDto>
     {
-       
+        Task<PagedList<CurrenciesDto>> GetAllAsync(Filter filter);
     }
 }

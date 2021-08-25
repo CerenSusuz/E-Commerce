@@ -8,6 +8,6 @@ namespace Business.Abstract
 {
     public interface IAccountAddressService : IServiceRepository<AccountAddressDto>
     {
-        Task<PagedList<AccountAddressesDto>> GetAllAsync(int accountId);
+        Task<PagedList<AccountAddressesDto>> GetAllAsync(Filter filter, int accountId);
     }
 }

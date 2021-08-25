@@ -30,7 +30,9 @@ namespace Business.Concrete
         [CacheAspect]
         public async Task<PagedList<UserGroupsDto>> GetAllAsync(Filter filter)
         {
-            return await Task.Run(() => _repository.AsNoTracking.Filter(filter).ToPagedList<UserGroup, UserGroupsDto>(filter, _mapper));
+            return await Task.Run(() => _repository.AsNoTracking
+                .Filter(filter)
+                .ToPagedList<UserGroup, UserGroupsDto>(filter, _mapper));
         }
     }
 }

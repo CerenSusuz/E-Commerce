@@ -8,7 +8,7 @@ namespace Business.Abstract
 {
     public interface IExchangeRateHistoryService : IServiceRepository<ExchangeRateDto>
     {
-       
+        Task<PagedList<ExchangeRatesDto>> GetAllAsync(Filter filter, int currencyId);
     }
     
 }

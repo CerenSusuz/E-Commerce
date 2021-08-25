@@ -8,6 +8,6 @@ namespace Business.Abstract
 {
     public interface IDistrictService : IServiceRepository<DistrictDto>
     {
-        Task<PagedList<DistrictsDto>> GetAllAsync(int cityId);
+        Task<PagedList<DistrictsDto>> GetAllAsync(Filter filter, int cityId);
     }
 }

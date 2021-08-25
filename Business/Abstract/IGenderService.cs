@@ -8,7 +8,6 @@ namespace Business.Abstract
 {
     public interface IGenderService : IServiceRepository<GenderDto>
     {
-        Task<PagedList<GendersDto>> GetAllAsync();
-
+        Task<PagedList<GendersDto>> GetAllAsync(Filter filter);
     }
 }

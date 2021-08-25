@@ -8,6 +8,7 @@ namespace Business.Abstract
 {
     public interface IFavoriteProductService : IServiceRepository<FavoriteProductDto>
     {
-        Task<PagedList<FavoriteProductsDto>> GetAllAsync(int accountId);
+        Task<PagedList<FavoriteProductsDto>> GetAllByAccountAsync(Filter filter, int accountId);
+        Task<PagedList<FavoriteProductsDto>> GetAllAsync(Filter filter);
     }
 }

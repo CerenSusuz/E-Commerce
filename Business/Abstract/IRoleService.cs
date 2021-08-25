@@ -8,6 +8,6 @@ namespace Business.Abstract
 {
     public interface IRoleService : IServiceRepository<RoleDto>
     {
-        Task<PagedList<RolesDto>> GetAllAsync(int accountId);
+        Task<PagedList<RolesDto>> GetAllAsync(Filter filter);
     }
 }

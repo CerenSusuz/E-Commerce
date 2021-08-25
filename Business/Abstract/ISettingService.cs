@@ -8,6 +8,6 @@ namespace Business.Abstract
 {
     public interface ISettingService : IServiceRepository<SettingDto>
     {
-        Task<PagedList<SettingsDto>> GetAllAsync();
+        Task<PagedList<SettingsDto>> GetAllAsync(Filter filter);
     }
 }

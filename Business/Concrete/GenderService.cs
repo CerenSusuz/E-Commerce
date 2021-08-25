@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using Business.Abstract;
 using Business.Models.BaseDto;
@@ -11,6 +12,7 @@ using Core.Extensions;
 using Core.Models;
 using DataAccess.Entities;
 using DataAccess.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.Concrete
 {
@@ -27,9 +29,11 @@ namespace Business.Concrete
         }
         
         [CacheAspect()]
-        public Task<PagedList<GendersDto>> GetAllAsync()
+        public async Task<PagedList<GendersDto>> GetAllAsync(Filter filter)
         {
-            throw new System.NotImplementedException();
+            return await Task.Run(() => _repository.AsNoTracking
+                .Filter(filter)
+                .ToPagedList<Gender, GendersDto>(filter, _mapper));
         }
     }
 }

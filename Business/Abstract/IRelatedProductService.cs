@@ -8,6 +8,6 @@ namespace Business.Abstract
 {
     public interface IRelatedProductService : IServiceRepository<RelatedProductDto>
     {
-        Task<PagedList<RelatedProductsDto>> GetAllAsync(int productId);
+        Task<PagedList<RelatedProductsDto>> GetAllAsync(Filter filter, int productId);
     }
 }

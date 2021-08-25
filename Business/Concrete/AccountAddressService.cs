@@ -1,10 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using Business.Abstract;
 using Business.Models.BaseDto;
 using Business.Models.BaseListDto;
 using Business.Repositories;
 using Core.Aspects.CacheAspect;
+using Core.Extensions;
 using Core.Models;
 using DataAccess.Entities;
 using DataAccess.Repositories;
@@ -21,10 +23,13 @@ namespace Business.Concrete
             _mapper = mapper;
         }
         
-        [CacheAspect()]
-        public Task<PagedList<AccountAddressesDto>> GetAllAsync(int accountId)
+        [CacheAspect]
+        public async Task<PagedList<AccountAddressesDto>> GetAllAsync(Filter filter, int accountId)
         {
-            throw new System.NotImplementedException();
+            return await Task.Run(() => _repository.AsNoTracking
+                .Where(x=>x.AccountId == accountId)
+                .Filter(filter)
+                .ToPagedList<AccountAddress, AccountAddressesDto>(filter, _mapper));
         }
     }
 }

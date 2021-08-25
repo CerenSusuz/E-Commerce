@@ -5,6 +5,7 @@ using Business.Models.BaseDto;
 using Business.Models.BaseListDto;
 using Business.Repositories;
 using Core.Aspects.CacheAspect;
+using Core.Extensions;
 using Core.Models;
 using DataAccess.Entities;
 using DataAccess.Repositories;
@@ -22,9 +23,11 @@ namespace Business.Concrete
             _mapper = mapper;
         }
         [CacheAspect()]
-        public Task<PagedList<ProductGroupLinesDto>> GetAllAsync(Filter filter)
+        public async Task<PagedList<ProductGroupLinesDto>> GetAllAsync(Filter filter)
         {
-            throw new System.NotImplementedException();
+            return await Task.Run(() => _repository.AsNoTracking
+                .Filter(filter)
+                .ToPagedList<ProductGroupLine, ProductGroupLinesDto>(filter, _mapper));
         }
     }
 }

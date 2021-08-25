@@ -9,5 +9,6 @@ namespace Business.Abstract
     public interface IProductService : IServiceRepository<ProductDto>
     {
         Task<PagedList<ProductsDto>> GetAllAsync(Filter filter);
+        Task<PagedList<ProductsDto>> GetAllByCategoryAsync(Filter filter, int categoryId);
     }
 }

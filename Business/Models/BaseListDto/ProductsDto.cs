@@ -1,8 +1,9 @@
-﻿using DataAccess.Entities;
+﻿using Core.Signatures;
+using DataAccess.Entities;
 
 namespace Business.Models.BaseListDto
 {
-    public class ProductsDto
+    public class ProductsDto : IBaseListDto
     {
         public int Id { get; set; }
         public string Description { get; set; }

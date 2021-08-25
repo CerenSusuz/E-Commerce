@@ -4,6 +4,7 @@ using Business.Abstract;
 using Business.Models.BaseDto;
 using Business.Models.BaseListDto;
 using Business.Repositories;
+using Core.Extensions;
 using Core.Models;
 using DataAccess.Entities;
 using DataAccess.Repositories;
@@ -20,9 +21,11 @@ namespace Business.Concrete
             _mapper = mapper;
         }
 
-        public Task<PagedList<SettingsDto>> GetAllAsync()
+        public async Task<PagedList<SettingsDto>> GetAllAsync(Filter filter)
         {
-            throw new System.NotImplementedException();
+            return await Task.Run(() => _repository.AsNoTracking
+                .Filter(filter)
+                .ToPagedList<Setting, SettingsDto>(filter, _mapper));
         }
     }
 }

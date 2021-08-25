@@ -1,13 +1,16 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using Business.Abstract;
 using Business.Models.BaseDto;
 using Business.Models.BaseListDto;
 using Business.Repositories;
 using Core.Aspects.CacheAspect;
+using Core.Extensions;
 using Core.Models;
 using DataAccess.Entities;
 using DataAccess.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.Concrete
 {
@@ -23,9 +26,14 @@ namespace Business.Concrete
         }
 
         [CacheAspect()]
-        public Task<PagedList<RelatedProductsDto>> GetAllAsync(int productId)
+        public async Task<PagedList<RelatedProductsDto>> GetAllAsync(Filter filter, int productId)
         {
-            throw new System.NotImplementedException();
+            return await Task.Run(() => _repository.Table
+                .Where(c=>c.ProductId==productId)
+                .Include(c=>c.Product)
+                .Include(c=>c.SuggestionSelling)
+                .Filter(filter)
+                .ToPagedList<RelatedProduct, RelatedProductsDto>(filter, _mapper));
         }
     }
 }

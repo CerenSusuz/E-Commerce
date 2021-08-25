@@ -1,13 +1,16 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using AutoMapper;
 using Business.Abstract;
 using Business.Models.BaseDto;
 using Business.Models.BaseListDto;
 using Business.Repositories;
 using Core.Aspects.CacheAspect;
+using Core.Extensions;
 using Core.Models;
 using DataAccess.Entities;
 using DataAccess.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Business.Concrete
 {
@@ -21,10 +24,23 @@ namespace Business.Concrete
             _repository = repository;
             _mapper = mapper;
         }
-        [CacheAspect()]
-        public Task<PagedList<FavoriteProductsDto>> GetAllAsync(int accountId)
+        [CacheAspect]
+        public async Task<PagedList<FavoriteProductsDto>> GetAllByAccountAsync(Filter filter, int accountId)
         {
-            throw new System.NotImplementedException();
+            return await Task.Run(() => _repository.AsNoTracking
+                .Where(x=>x.AccountId == accountId)
+                .Include(c=>c.Account)
+                .Include(c=>c.Product)
+                .Filter(filter)
+                .ToPagedList<FavoriteProduct, FavoriteProductsDto>(filter, _mapper));
+        }
+
+        [CacheAspect]
+        public async Task<PagedList<FavoriteProductsDto>> GetAllAsync(Filter filter)
+        {
+            return await Task.Run(() => _repository.AsNoTracking
+                .Filter(filter)
+                .ToPagedList<FavoriteProduct, FavoriteProductsDto>(filter, _mapper));
         }
     }
 }
