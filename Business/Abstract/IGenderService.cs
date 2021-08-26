@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Business.Models.BaseDto;
 using Business.Models.BaseListDto;
 using Business.Repositories;
@@ -8,6 +9,6 @@ namespace Business.Abstract
 {
     public interface IGenderService : IServiceRepository<GenderDto>
     {
-        Task<PagedList<GendersDto>> GetAllAsync(Filter filter);
+        Task<List<GendersDto>> GetAllAsync();
     }
 }

@@ -17,10 +17,8 @@ namespace API.Controllers
             _service = service;
         }
 
-        [HttpGet]
+        [HttpGet("{countryId:int}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         public async Task<IActionResult> GetAll([FromQuery]Filter filter, int countryId)
         {
             var data =await _service.GetAllAsync(filter,countryId);

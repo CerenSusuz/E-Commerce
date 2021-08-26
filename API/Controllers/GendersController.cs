@@ -24,7 +24,6 @@ namespace API.Controllers
         public async Task<IActionResult> GetAll()
         {
             var data =await _service.GetAllAsync();
-            
             return Ok(data);
         }
         

@@ -13,8 +13,8 @@ namespace API.Installers.Services
         {
             var jwtOption = new JwtOption
             {
-                Audience = "EShop",
-                Issuer = "EShop",
+                Audience = "ECommerce",
+                Issuer = "ECommerce",
                 SecurityKey = "F2peYX7865Yk8wztCxg8jzZGF5yEx4vu4TK4mN8DLtsVpnGa3V5jabYjFhGf",
                 AccessTokenExpiration = 10,
                 RefreshTokenExpiration = 50

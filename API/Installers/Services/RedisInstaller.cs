@@ -12,7 +12,7 @@ namespace API.Installers.Services
             services.AddSingleton<ICacheService, RedisCacheService>();
             var opt = new RedisOption
             {
-                InstanceName = "EShop.Api",
+                InstanceName = "ECommerce.Api",
                 ConnectionString = "localhost:6376,ssl=False",
                 AbsoluteExpiration = 60
             };

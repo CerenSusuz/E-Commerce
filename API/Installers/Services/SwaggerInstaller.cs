@@ -16,12 +16,12 @@ namespace API.Installers.Services
             {
                 c.SwaggerDoc("v1", new OpenApiInfo
                     {
-                        Title = "EShop.API",
+                        Title = "ECommerce.API",
                         Version = "v1",
                         Description = ".NET Core 5.0.100",
                         Contact = new OpenApiContact
                         {
-                            Name = "EShop Api Project",
+                            Name = "ECommerce Api Project",
                             Url = new Uri("https://www.yeditepesoft.com")
                         }
                     }
@@ -56,19 +56,8 @@ namespace API.Installers.Services
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Api Service");
-                //c.DefaultModelExpandDepth(2);
-                //c.DefaultModelRendering(ModelRendering.Model);
                 c.DefaultModelsExpandDepth(-1);
-                //c.DisplayOperationId();
-                //c.DisplayRequestDuration();
-                //c.DocExpansion(DocExpansion.List);
                 c.DocExpansion(DocExpansion.None);
-                //c.EnableDeepLinking();
-                //c.EnableFilter();
-                //c.MaxDisplayedTags(5);
-                //c.ShowExtensions();
-                //c.EnableValidator();
-                //c.SupportedSubmitMethods(SubmitMethod.Get, SubmitMethod.Head);
             });
         }
     }

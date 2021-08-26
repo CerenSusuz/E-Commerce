@@ -29,11 +29,12 @@ namespace Business.Concrete
         }
         
         [CacheAspect()]
-        public async Task<PagedList<GendersDto>> GetAllAsync(Filter filter)
+        public async Task<List<GendersDto>> GetAllAsync()
         {
-            return await Task.Run(() => _repository.AsNoTracking
-                .Filter(filter)
-                .ToPagedList<Gender, GendersDto>(filter, _mapper));
+            var table = await _repository.Table.ToListAsync();
+            var dto = _mapper.Map<List<Gender>, List<GendersDto>>(table);
+            return dto;
         }
+        
     }
 }
